@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publish houses</title>
+</head>
+<body>
+{% include 'navigation.html' %}
+<a href="{{ url_for('add_publisher') }}">
+    <button>Add publish house</button>
+</a>
+<ol>
+    {% for publisher in publishers %}
+        <li> {{ publisher.name }} {% if publisher.address %} Address: {{ publisher.address }} {% endif %}
+            {% if publisher.phone_num %}Tel. {{ publisher.phone_num }} {% endif %}
+            {% if publisher.website %}website: {{ publisher.website }}{% endif %}</li>
+        <a href="{{ url_for('edit_publisher', publisher_id = publisher.id ) }}">
+            Edit
+        </a>
+        <a href="{{ url_for('delete_publisher', publisher_id = publisher.id ) }}" style="margin-left: 10px;">
+            Delete
+        </a>
+        <br> <br>
+    {% endfor %}
+</ol>
+</body>
+</html>
